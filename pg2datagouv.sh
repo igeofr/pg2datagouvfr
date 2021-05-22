@@ -169,20 +169,35 @@ if test -f "$FILE"; then
       # RECUPERATION DE L'IDENTIFIANT DE LA RESSOURCE
       RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
       echo "${RESOURCE[0]}"
-
+      
+      # -------------------------------------------------------------------------
+      # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
+      curl -H "Content-Type:application/json" \
+           -H "Accept:application/json" \
+           -H "X-Api-Key:$API_KEY" \
+           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'"}' \
+           -X PUT $API'/datasets/'$DATASET'/'
+      # -------------------------------------------------------------------------
       # ACTUALISATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
            -X POST $API'/datasets/'$DATASET'/resources/'$RESOURCE'/upload/'
       # -------------------------------------------------------------------------
-      # MISE A JOUR DE LA FICHE DE METADONNEES
+      # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     else
+      # -------------------------------------------------------------------------
+      # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
+      curl -H "Content-Type:application/json" \
+           -H "Accept:application/json" \
+           -H "X-Api-Key:$API_KEY" \
+           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'"}' \
+           -X PUT $API'/datasets/'$DATASET'/'
       # -------------------------------------------------------------------------
       # CREATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
@@ -191,7 +206,7 @@ if test -f "$FILE"; then
            -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
 
       # -------------------------------------------------------------------------
-      # MISE A JOUR DE LA FICHE DE METADONNEES
+      # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
       RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
       echo "${RESOURCE[0]}"
 
