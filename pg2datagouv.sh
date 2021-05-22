@@ -130,7 +130,6 @@ cd $REPER
 # DECHETS
 # COMPOSTEURS -------------------------------------------------------------------
 if [ "$DONNEE" = "COMPOSTEURS" ]; then
-  # Couche COMPOSTEURS
   # LANCEMENT DE L'EXTRACTION
   sh scripts/dechets_composteurs.sh | tee $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/dechets_composteurs.txt'
   # SUPPRESSIN DU LOG
@@ -156,8 +155,9 @@ zip -j -r $DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.zip' $REPER'/'$REPER_TEMP'/'$DONNE
 # TESTER SI LE JEU DE DONNEE EXISTE
 FILE=$REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
 if test -f "$FILE"; then
-
-    echo "$FILE exists."
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
+    echo "$FILE existe"
     # RECUPERATION DE L'IDENTIFIANT DU JEU DE DONNEE
     DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
     echo "${DATASET[0]}"
@@ -166,10 +166,12 @@ if test -f "$FILE"; then
     FILE_RESSOURCE=$REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
     if test -f "$FILE_RESSOURCE"; then
 
+      # ----------------------------------------------------------------------------------------------------------------------------------------------------
+      # ----------------------------------------------------------------------------------------------------------------------------------------------------
       # RECUPERATION DE L'IDENTIFIANT DE LA RESSOURCE
       RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
       echo "${RESOURCE[0]}"
-      
+
       # -------------------------------------------------------------------------
       # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
       curl -H "Content-Type:application/json" \
@@ -191,7 +193,8 @@ if test -f "$FILE"; then
            --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     else
-      # -------------------------------------------------------------------------
+      # --------------------------------------------------------------------------------------------------------------------------------------------------
+      # --------------------------------------------------------------------------------------------------------------------------------------------------
       # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
@@ -216,7 +219,9 @@ if test -f "$FILE"; then
            --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     fi
-  else
+else
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # CREATION DU JEU DE DONNEES
     curl -H "Content-Type:application/json" \
          -H "Accept:application/json" \
@@ -225,25 +230,27 @@ if test -f "$FILE"; then
          -X POST $API'/datasets/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
 
 
-         # -------------------------------------------------------------------------
-         # CREATION DE LA RESSOURCE
-         DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
-         echo "${DATASET[0]}"
-         curl -H "Accept:application/json" \
-              -H "X-Api-Key:$API_KEY" \
-              -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
-              -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
+    # -------------------------------------------------------------------------
+    # CREATION DE LA RESSOURCE
+    DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
+    echo "${DATASET[0]}"
+    curl -H "Accept:application/json" \
+         -H "X-Api-Key:$API_KEY" \
+         -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
+         -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
 
          # -------------------------------------------------------------------------
-         # MISE A JOUR DE LA FICHE DE METADONNEES
-         RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
-         echo "${RESOURCE[0]}"
+         # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
+    RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
+    echo "${RESOURCE[0]}"
 
-         curl -H "Content-Type:application/json" \
-              -H "Accept:application/json" \
-              -H "X-Api-Key:$API_KEY" \
-              --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
-              -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
+    curl -H "Content-Type:application/json" \
+         -H "Accept:application/json" \
+         -H "X-Api-Key:$API_KEY" \
+         --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
+         -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------------------------------------------------------------
 fi
 
 # -------------------------------------------------------------------------------
