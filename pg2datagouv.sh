@@ -179,7 +179,7 @@ if test -f "$FILE"; then
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
+           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": '$TEMPORAL_COVERAGE', "private": "true"}' \
            -X PUT $API'/datasets/'$DATASET'/'
       # -------------------------------------------------------------------------
       # ACTUALISATION DE LA RESSOURCE
@@ -202,7 +202,7 @@ if test -f "$FILE"; then
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
+           --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": '$TEMPORAL_COVERAGE', "private": "true"}' \
            -X PUT $API'/datasets/'$DATASET'/'
       # -------------------------------------------------------------------------
       # CREATION DE LA RESSOURCE
@@ -230,7 +230,7 @@ else
     curl -H "Content-Type:application/json" \
          -H "Accept:application/json" \
          -H "X-Api-Key:$API_KEY" \
-         --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "organization": "'$ORG'", "private": "true"}' \
+         --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": '$TEMPORAL_COVERAGE', "organization": "'$ORG'", "private": "true"}' \
          -X POST $API'/datasets/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
 
     # -------------------------------------------------------------------------
@@ -255,6 +255,9 @@ else
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
 fi
+
+
+echo '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": '$TEMPORAL_COVERAGE', "organization": "'$ORG'", "private": "true"}' \
 
 # -------------------------------------------------------------------------------
 # SUPPRESSION DES FICHIERS TEMPORAIRES Suppression des fichiers temporaires
