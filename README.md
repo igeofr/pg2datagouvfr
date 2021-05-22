@@ -1,4 +1,4 @@
-# PG2datagouvfr
+# pg2datagouv
 Extraction de données PostgreSQL et transfert vers [Data.gouv.fr](https://www.data.gouv.fr/fr/) via l'[API](https://doc.data.gouv.fr/api/dataset-workflow/).
 
 ## Formats gérés.
