@@ -152,13 +152,13 @@ rm -r $DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.zip'
 zip -j -r $DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.zip' $REPER'/'$REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/'*
 
 # -------------------------------------------------------------------------------
-# TESTER SI LE JEU DE DONNEE EXISTE
+# TESTER SI LE JEU DE DONNEES EXISTE
 FILE=$REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
 if test -f "$FILE"; then
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     echo "$FILE existe"
-    # RECUPERATION DE L'IDENTIFIANT DU JEU DE DONNEE
+    # RECUPERATION DE L'IDENTIFIANT DU JEU DE DONNEES
     DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
     echo "${DATASET[0]}"
 
@@ -222,7 +222,7 @@ if test -f "$FILE"; then
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     fi
 else
-# SI LE JEU DE DONNEE N'EXISTE PAS
+# SI LE JEU DE DONNEES N'EXISTE PAS
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # CREATION DU JEU DE DONNEES
