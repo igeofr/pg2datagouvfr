@@ -163,6 +163,7 @@ if test -f "$FILE"; then
     echo "${DATASET[0]}"
 
     # ---------------------------------------------------------------------------
+    # TESTER SI LA RESSOURCE EXISTE
     FILE_RESSOURCE=$REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
     if test -f "$FILE_RESSOURCE"; then
 
@@ -193,6 +194,7 @@ if test -f "$FILE"; then
            --data '{"title": "'$DONNEE_TITLE' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     else
+      # SI LA RESSOURCE N'EXISTE PAS
       # --------------------------------------------------------------------------------------------------------------------------------------------------
       # --------------------------------------------------------------------------------------------------------------------------------------------------
       # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
@@ -220,6 +222,7 @@ if test -f "$FILE"; then
            -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
     fi
 else
+# SI LE JEU DE DONNEE N'EXISTE PAS
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # CREATION DU JEU DE DONNEES
@@ -228,7 +231,6 @@ else
          -H "X-Api-Key:$API_KEY" \
          --data '{"title": "'$DONNEE_TITLE'", "description": "'"$DESCRIPTION"'", "organization": "'$ORG'", "private": "true"}' \
          -X POST $API'/datasets/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
-
 
     # -------------------------------------------------------------------------
     # CREATION DE LA RESSOURCE
@@ -239,8 +241,8 @@ else
          -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
          -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
 
-         # -------------------------------------------------------------------------
-         # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
+    # -------------------------------------------------------------------------
+    # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
     RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
     echo "${RESOURCE[0]}"
 
