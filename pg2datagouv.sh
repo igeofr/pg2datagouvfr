@@ -68,9 +68,9 @@ if [ "$#" -ge 3 ]; then
     format=$3
   else
     IFS= read -p "FORMAT : " p_format
-    if [ "$r_format" = "SHP" ] || [ "$r_format" = "GPKG" ] || [ "$r_format" = "SQL" ] || [ "$r_format" = "CSV" ] || [ "$r_format" = "ODS" ] || [ "$r_format" = "GEOJSON" ];
+    if [ "$p_format" = "SHP" ] || [ "$p_format" = "GPKG" ] || [ "$p_format" = "SQL" ] || [ "$p_format" = "CSV" ] || [ "$p_format" = "ODS" ] || [ "$p_format" = "GEOJSON" ];
     then
-      export format=$r_format
+      export format=$p_format
     else
       echo "Erreur de paramètre"
       exit 0
@@ -78,9 +78,9 @@ if [ "$#" -ge 3 ]; then
   fi
 else
   IFS= read -p "FORMAT : " p_format
-  if [ "$r_format" = "SHP" ] || [ "$r_format" = "GPKG" ]|| [ "$r_format" = "SQL" ] || [ "$3" = "CSV" ] || [ "$3" = "ODS" ] || [ "$3" = "GEOJSON" ];
+  if [ "$p_format" = "SHP" ] || [ "$p_format" = "GPKG" ]|| [ "$p_format" = "SQL" ] || [ "$p_format" = "CSV" ] || [ "$p_format" = "ODS" ] || [ "$p_format" = "GEOJSON" ];
   then
-    export format=$r_format
+    export format=$p_format
   else
     echo "Erreur de paramètre"
     exit 0
