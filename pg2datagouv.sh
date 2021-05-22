@@ -173,20 +173,20 @@ if test -f "$FILE"; then
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
-           -X PUT $API'/datasets/'$DATASET'/'
+           -X PUT $API'/datasets/'$DATASET'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
       # -------------------------------------------------------------------------
       # ACTUALISATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
-           -X POST $API'/datasets/'$DATASET'/resources/'$RESOURCE'/upload/'
+           -X POST $API'/datasets/'$DATASET'/resources/'$RESOURCE'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
       # -------------------------------------------------------------------------
       # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            --data '{"title": "'"$TITLE"' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
-           -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
+           -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
     else
       # SI LA RESSOURCE N'EXISTE PAS
       # --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ if test -f "$FILE"; then
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
-           -X PUT $API'/datasets/'$DATASET'/'
+           -X PUT $API'/datasets/'$DATASET'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
       # -------------------------------------------------------------------------
       # CREATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
@@ -213,7 +213,7 @@ if test -f "$FILE"; then
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
            --data '{"title": "'"$TITLE"' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
-           -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
+           -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
     fi
 else
 # SI LE JEU DE DONNEES N'EXISTE PAS
@@ -244,7 +244,7 @@ else
          -H "Accept:application/json" \
          -H "X-Api-Key:$API_KEY" \
          --data '{"title": "'"$TITLE"' - '$FORMAT_SIG'", "description": "Livraison > '$DATE_T'"}' \
-         -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/'
+         -X PUT $API'/datasets/'$DATASET'/resources/'$RESOURCE'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
 fi
