@@ -95,8 +95,9 @@ export DATE_T=$(date "+%Y%m")
 export DATE_OLD='date -d "-1 month" "+%Y%m"'
 
 export DONNEE=$a_DONNEE
-export FORMAT_SIG=$format
 export OUT_EPSG=$c_epsg
+export FORMAT_SIG=$format
+echo $DONNEE
 
 . ./$REPER_DESC'/'$DONNEE'.env'
 echo $DESCRIPTION
