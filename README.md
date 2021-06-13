@@ -3,7 +3,6 @@ Extraction de données PostgreSQL et transfert vers [Data.gouv.fr](https://www.d
 
 ## Formats gérés.
 
-- SQL
 - GPKG
 - SHP
 - GeoJSON
