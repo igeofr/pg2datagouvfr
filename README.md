@@ -23,7 +23,7 @@ pg2datagouv.sh COMPOSTEURS 2154 CSV
 
 ## Dépendances
 
-Intaller :
+Installer :
 - jq : `sudo apt-get install jq`
 - gdal : `sudo apt-get install gdal-bin`
 - curl : `sudo apt-get install curl`
