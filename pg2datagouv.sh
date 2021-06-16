@@ -154,8 +154,8 @@ if test -f "$FILE"; then
     # ----------------------------------------------------------------------------------------------------------------------------------------------------
     echo "$FILE existe"
     # RECUPERATION DE L'IDENTIFIANT DU JEU DE DONNEES
-    DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
-    echo "${DATASET[0]}"
+    DATASET=$(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json')
+    echo "${DATASET}"
 
     # ---------------------------------------------------------------------------
     # TESTER SI LA RESSOURCE EXISTE
@@ -165,8 +165,8 @@ if test -f "$FILE"; then
       # ----------------------------------------------------------------------------------------------------------------------------------------------------
       # ----------------------------------------------------------------------------------------------------------------------------------------------------
       # RECUPERATION DE L'IDENTIFIANT DE LA RESSOURCE
-      RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
-      echo "${RESOURCE[0]}"
+      RESOURCE=$(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json')
+      echo "${RESOURCE}"
 
       # -------------------------------------------------------------------------
       # ACTUALISATION A JOUR DE LA FICHE DE METADONNEES DU JEU DE DONNEES
@@ -207,8 +207,8 @@ if test -f "$FILE"; then
 
       # -------------------------------------------------------------------------
       # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
-      RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
-      echo "${RESOURCE[0]}"
+      RESOURCE=$(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json')
+      echo "${RESOURCE}"
 
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
@@ -229,8 +229,8 @@ else
 
     # -------------------------------------------------------------------------
     # CREATION DE LA RESSOURCE
-    DATASET=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'))
-    echo "${DATASET[0]}"
+    DATASET=$(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json')
+    echo "${DATASET}"
     curl -H "Accept:application/json" \
          -H "X-Api-Key:$API_KEY" \
          -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
@@ -238,8 +238,8 @@ else
 
     # -------------------------------------------------------------------------
     # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
-    RESOURCE=($(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'))
-    echo "${RESOURCE[0]}"
+    RESOURCE=$(jq -r '.id' $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json')
+    echo "${RESOURCE}"
 
     curl -H "Content-Type:application/json" \
          -H "Accept:application/json" \
