@@ -46,10 +46,15 @@ fi
 if [ "$FORMAT_SIG" = "GPKG" ]
 then
   echo "Debut : $var_group > $var_file"
-  $LINK_OGR -progress -s_srs EPSG:2154 -t_srs EPSG:$OUT_EPSG -f 'GPKG' -update -append $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/'$DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.gpkg' PG:"host='$C_HOST' user='$C_USER' dbname='$C_DBNAME' password='$C_PASSWORD' active_schema='$schema' schemas='$schema'" -dialect SQLITE -sql "SELECT * FROM ($(echo $requete | sed -e 's/-//g'))" -nlt point -nln $DONNEE -lco SPATIAL_INDEX=YES --debug ON -skipfailures -oo CONFIG_FILE='scripts/'$var_group'/'$var_file'_osmconf.ini'
+  $LINK_OGR -progress -s_srs EPSG:2154 -t_srs EPSG:$OUT_EPSG -f 'GPKG' -update -append $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/'$DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.gpkg' PG:"host='$C_HOST' user='$C_USER' dbname='$C_DBNAME' password='$C_PASSWORD' active_schema='$schema' schemas='$schema'" -dialect SQLITE -sql "SELECT * FROM ($(echo $requete | sed -e 's/-//g'))" -nlt point -nln $DONNEE -lco SPATIAL_INDEX=YES --debug ON -skipfailures
   echo "Fin : $var_group > $var_file"
 fi
-
+if [ "$FORMAT_SIG" = "SQL" ]
+then
+  echo "Debut : $var_group > $var_file"
+  $LINK_OGR -progress -s_srs EPSG:2154 -t_srs EPSG:$OUT_EPSG -f 'PGDump' $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/'$DATE_T'_'$DONNEE'_'$FORMAT_SIG$NZ'.sql' PG:"host='$C_HOST' user='$C_USER' dbname='$C_DBNAME' password='$C_PASSWORD' active_schema='$schema' schemas='$schema'" -dialect SQLITE -sql "SELECT * FROM ($(echo $requete | sed -e 's/-//g'))" -nln $DONNEE --config PG_USE_COPY YES --debug ON -skipfailures -lco SRID=2154 -lco SCHEMA=$schema -lco GEOMETRY_NAME=geom
+  echo "Fin : $var_group > $var_file"
+fi
 if [ "$FORMAT_SIG" = "CSV" ]
 then
   echo "Debut : $var_group > $var_file.csv"
