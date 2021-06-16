@@ -20,3 +20,10 @@ Extraction de données PostgreSQL et transfert vers [Data.gouv.fr](https://www.d
 ```
 pg2datagouv.sh COMPOSTEURS 2154 CSV
 ```
+
+## Dépendances
+
+Intaller :
+- jq : `sudo apt-get install jq`
+- gdal : `sudo apt-get install gdal-bin`
+- curl : `sudo apt-get install curl`
