@@ -179,7 +179,7 @@ if test -f "$FILE"; then
       # ACTUALISATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
+           -F "file=@"$REPER"/"$REPER_OUT"/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
            -X POST $API'/datasets/'$DATASET'/resources/'$RESOURCE'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
       # -------------------------------------------------------------------------
       # MISE A JOUR DE LA FICHE DE METADONNEES DE LA RESSOURCE
@@ -202,7 +202,7 @@ if test -f "$FILE"; then
       # CREATION DE LA RESSOURCE
       curl -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
+           -F "file=@"$REPER"/"$REPER_OUT"/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
            -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
 
       # -------------------------------------------------------------------------
@@ -233,7 +233,7 @@ else
     echo "${DATASET}"
     curl -H "Accept:application/json" \
          -H "X-Api-Key:$API_KEY" \
-         -F "file=@"$REPER"/data_out/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
+         -F "file=@"$REPER"/"$REPER_OUT"/"$DATE_T"_"$DONNEE"_"$FORMAT_SIG$NZ".zip" \
          -X POST $API'/datasets/'$DATASET'/upload/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'_'$FORMAT_SIG'.json'
 
     # -------------------------------------------------------------------------
