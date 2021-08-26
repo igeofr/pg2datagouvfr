@@ -130,7 +130,7 @@ if [ "$DONNEE" = "COMPOSTEURS" ]; then
   # SUPPRESSIN DU LOG
   rm -r $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/dechets_composteurs.txt'
   # AJOUT DE LA LICENCE
-  cp attachement/Z_Licence.txt $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/Z_Licence.txt'
+  cp attachment/Z_Licence.txt $REPER_TEMP'/'$DONNEE'/'$OUT_EPSG'/Z_Licence.txt'
 else
   echo "Erreur de paramètre"
   exit 0
