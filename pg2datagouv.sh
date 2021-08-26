@@ -173,7 +173,7 @@ if test -f "$FILE"; then
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
+           --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
            -X PUT $API'/datasets/'$DATASET'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
       # -------------------------------------------------------------------------
       # ACTUALISATION DE LA RESSOURCE
@@ -196,7 +196,7 @@ if test -f "$FILE"; then
       curl -H "Content-Type:application/json" \
            -H "Accept:application/json" \
            -H "X-Api-Key:$API_KEY" \
-           --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
+           --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "private": "true"}' \
            -X PUT $API'/datasets/'$DATASET'/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
       # -------------------------------------------------------------------------
       # CREATION DE LA RESSOURCE
@@ -224,7 +224,7 @@ else
     curl -H "Content-Type:application/json" \
          -H "Accept:application/json" \
          -H "X-Api-Key:$API_KEY" \
-         --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "granularity": "'"$GRANULARITY"'", "zones": "'"$ZONES"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "organization": "'$ORG'", "private": "true"}' \
+         --data '{"title": "'"$TITLE"'", "description": "'"$DESCRIPTION"'", "tags": "'"$TAG"'", "frequency": "'"$FREQUENCY"'", "spatial": "'"$SPATIAL"'", "license": "'"$LICENSE"'", "temporal_coverage": "'"$TEMPORAL_COVERAGE"'", "organization": "'$ORG'", "private": "true"}' \
          -X POST $API'/datasets/' > $REPER'/'$REPER_CONFIG_JSON'/'$DONNEE'.json'
 
     # -------------------------------------------------------------------------
