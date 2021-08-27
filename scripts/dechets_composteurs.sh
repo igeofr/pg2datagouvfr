@@ -2,7 +2,10 @@
 
 # 2021 Communauté de Communes du Pays de Lunel
 # https://creativecommons.org/licenses/by-sa/4.0/deed.fr
-#- -----------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------
+# LECTURE DU FICHIER DE CONFIGURATION
+. ./config.env
+# ------------------------------------------------------------------------------------------------------------
 var_group=DECHETS
 var_file=COMPOSTEURS
 schema=ccpl_dechet
