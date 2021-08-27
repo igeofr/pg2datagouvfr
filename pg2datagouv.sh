@@ -251,7 +251,7 @@ else
 fi
 
 # -------------------------------------------------------------------------------
-# SUPPRESSION DES FICHIERS TEMPORAIRES Suppression des fichiers temporaires
+# SUPPRESSION DES FICHIERS TEMPORAIRES
 cd $REPER
 cd $REPER_TEMP'/'
 rm -rfv *
