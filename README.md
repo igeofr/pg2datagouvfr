@@ -8,6 +8,7 @@ Extraction de données PostgreSQL et transfert vers [Data.gouv.fr](https://www.d
 - GeoJSON
 - ODS
 - CSV
+- SQL
 
 ## A faire pour chaque nouvelle donnée à publier
 
