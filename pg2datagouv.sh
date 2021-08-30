@@ -3,6 +3,8 @@
 # Created By : Florian Boret
 # Created Date : Mai 2021
 # Date last modified :
+# https://github.com/igeofr/pg2datagouvfr
+# https://creativecommons.org/licenses/by-sa/4.0/deed.fr
 # ===============================================================================
 # Démarage du compteur > temps
 start=$(date '+%s')
