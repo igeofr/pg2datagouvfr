@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# 2021 Communauté de Communes du Pays de Lunel
+# 2021 Florian Boret
+# https://github.com/igeofr/pg2datagouvfr
 # https://creativecommons.org/licenses/by-sa/4.0/deed.fr
 # -----------------------------------------------------------------------------------------------------------
 # LECTURE DU FICHIER DE CONFIGURATION
@@ -27,7 +28,7 @@ type,
 -----------------------------------------
 adresse,
 -----------------------------------------
-'Communauté de Communes du Pays de Lunel' as source
+'Communauté de Communes ...' as source
 -----------------------------------------
 FROM ccpl_composteurs WHERE ST_IsValid(GEOMETRY)"
 
